@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Практикум CLAUDE OS — Диана Миронова</title>
+<meta name="description" content="Онлайн-практикум CLAUDE OS: с нуля до первого нейросотрудника за четыре недели. Программа, тарифы и даты старта.">
+<style>
+@font-face{font-family:'PlayfairV';src:url('fonts/playfair-var.ttf') format('truetype');font-weight:400 900;font-display:swap}
+@font-face{font-family:'PlayfairI';src:url('fonts/playfair-italic.ttf') format('truetype');font-style:italic;font-display:swap}
+:root{
+  --paper-1:#FBF6ED;--paper-2:#F6F0E3;--paper-3:#EFE7D6;--card:#FFFDF8;
+  --ink:#2E1F10;--ink-soft:#3B2A18;--muted:#6B5439;--hint:#8A6E4E;
+  --brown:#A8764C;--brown-deep:#8A5C33;--line:#E8DBC4;--line-2:#CDB89A;
+  --sh-card:0 8px 16px rgba(80,56,30,.06);--sh-lift:0 18px 28px rgba(80,56,30,.14);
+  --cell:46px;--cell-w:1.4px;--cell-c:rgba(150,112,72,.13);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;color:var(--ink);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:17px;line-height:1.55;
+  background-color:var(--paper-2);
+  background-image:
+    repeating-linear-gradient(90deg,var(--cell-c) 0 var(--cell-w),transparent var(--cell-w) var(--cell)),
+    repeating-linear-gradient(0deg,var(--cell-c) 0 var(--cell-w),transparent var(--cell-w) var(--cell)),
+    linear-gradient(168deg,var(--paper-1) 0%,var(--paper-2) 54%,var(--paper-3) 100%);
+  background-attachment:scroll}
+body::before{content:"";position:fixed;inset:0;opacity:.10;mix-blend-mode:multiply;pointer-events:none;z-index:0;background-size:260px 260px;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/><feColorMatrix type='saturate' values='0'/></filter><rect width='260' height='260' filter='url(%23n)' opacity='0.55'/></svg>")}
+.wrap{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:0 20px}
+a{color:var(--brown-deep)}
+.h{font-family:'PlayfairV',Georgia,serif;font-weight:520;line-height:1.04;letter-spacing:.004em;color:var(--brown);text-transform:uppercase;margin:0;font-variant-numeric:lining-nums}
+.h em{font-family:'PlayfairI',Georgia,serif;font-style:italic;text-transform:none;color:var(--brown-deep)}
+.pill{display:inline-block;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--hint);border:1.4px solid var(--line-2);border-radius:999px;padding:6px 14px;background:rgba(255,253,248,.7)}
+.btn{display:inline-block;text-decoration:none;font-weight:600;border-radius:999px;padding:14px 26px;font-size:16px;transition:transform .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn-main{background:var(--brown);color:#FFFDF8;box-shadow:var(--sh-lift)}
+.btn-ghost{color:var(--brown-deep);border:1.4px solid var(--line-2);background:rgba(255,253,248,.8)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:var(--sh-card)}
+
+/* шапка */
+.top{display:flex;justify-content:space-between;align-items:center;padding:22px 0}
+.top .name{font-family:'PlayfairV',Georgia,serif;font-size:19px;color:var(--ink-soft)}
+.top a{font-size:15px;text-decoration:none;color:var(--muted)}
+
+/* первый экран */
+.hero{position:relative;padding:48px 0 70px}
+.hero .h{font-size:clamp(34px,6.2vw,64px);max-width:760px;margin:22px 0 22px}
+.hero p.lead{font-size:clamp(17px,2.2vw,20px);color:var(--ink-soft);max-width:600px;margin:0 0 30px}
+.hero .actions{display:flex;flex-wrap:wrap;gap:12px}
+.hero .folder{position:absolute;right:-10px;top:40px;width:210px;transform:rotate(9deg);filter:drop-shadow(0 18px 24px rgba(80,56,30,.22))}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:46px}
+.facts .card{padding:16px 18px}
+.facts b{display:block;font-family:'PlayfairV',Georgia,serif;font-weight:560;font-size:26px;color:var(--brown-deep);font-variant-numeric:lining-nums;line-height:1.1}
+.facts span{font-size:14px;color:var(--muted)}
+
+section{padding:56px 0}
+section > .h{font-size:clamp(28px,4.4vw,44px);margin-bottom:12px}
+.sub{color:var(--muted);max-width:640px;margin:0 0 30px}
+
+/* программа */
+.modules{display:grid;gap:14px}
+.module{padding:22px 24px;display:grid;grid-template-columns:64px 1fr;gap:6px 18px}
+.module .num{font-family:'PlayfairV',Georgia,serif;font-size:44px;line-height:1;color:var(--brown);font-variant-numeric:lining-nums}
+.module h3{margin:4px 0 8px;font-size:20px;color:var(--ink)}
+.module ul{margin:0 0 10px;padding-left:18px;color:var(--ink-soft)}
+.module li{margin:4px 0}
+.module .after{grid-column:2;font-size:15px;color:var(--brown-deep);background:rgba(168,118,76,.08);border-radius:12px;padding:10px 14px}
+.module .tag{display:inline-block;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#FFFDF8;background:var(--brown);border-radius:999px;padding:3px 10px;margin-left:8px;vertical-align:3px}
+
+/* расписание */
+.dates{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.dates .card{padding:20px 22px}
+.dates b{display:block;font-family:'PlayfairV',Georgia,serif;font-size:24px;color:var(--brown-deep);font-variant-numeric:lining-nums}
+.dates span{color:var(--ink-soft);font-size:16px}
+.how{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:14px}
+.how .card{padding:20px 22px;color:var(--ink-soft)}
+.how h4{margin:0 0 6px;font-size:17px;color:var(--ink)}
+.how p{margin:0;font-size:16px}
+
+/* тарифы */
+.tariffs{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:stretch}
+.tariff{padding:28px 26px;display:flex;flex-direction:column}
+.tariff.pro{border:1.6px solid var(--brown);box-shadow:var(--sh-lift)}
+.tariff .t-name{font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--hint);margin-bottom:6px}
+.tariff .price{font-family:'PlayfairV',Georgia,serif;font-weight:560;font-size:46px;color:var(--ink);font-variant-numeric:lining-nums;line-height:1.1}
+.tariff .price small{font-size:22px;color:var(--muted)}
+.tariff .access{color:var(--brown-deep);font-weight:600;margin:6px 0 16px;font-size:15px}
+.tariff ul{list-style:none;margin:0 0 22px;padding:0;flex:1}
+.tariff li{padding:9px 0 9px 26px;border-top:1px dashed var(--line);position:relative;font-size:16px;color:var(--ink-soft)}
+.tariff li::before{content:"";position:absolute;left:4px;top:17px;width:9px;height:9px;border-radius:50%;background:var(--brown)}
+.tariff li.plus{color:var(--ink);font-weight:600}
+.tariff .note{font-size:14px;color:var(--muted);margin-top:12px}
+.tariff .btn{text-align:center}
+.after-tariffs{margin-top:18px;color:var(--muted);font-size:15px}
+
+/* гарантии */
+.guar{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.guar .card{padding:22px 24px}
+.guar h4{margin:0 0 6px;font-size:18px}
+.guar p{margin:0;color:var(--ink-soft);font-size:16px}
+
+/* подвал */
+footer{padding:40px 0 50px;border-top:1px solid var(--line-2);margin-top:30px;color:var(--muted);font-size:14px}
+footer .req{line-height:1.7}
+footer .req b{color:var(--ink-soft);font-weight:600}
+
+@media (max-width:760px){
+  body{font-size:16px}
+  .hero{padding:26px 0 50px}
+  .hero .folder{display:none}
+  .hero .h{margin-top:18px}
+  .pill{font-size:12px;letter-spacing:.06em}
+  .facts{grid-template-columns:repeat(2,1fr)}
+  .module{grid-template-columns:1fr;padding:20px}
+  .module .num{font-size:36px}
+  .module .after{grid-column:1}
+  .dates,.how,.tariffs,.guar{grid-template-columns:1fr}
+  section{padding:42px 0}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="name">Диана Миронова</div>
+    <a href="https://t.me/mironova_dii">Telegram-канал</a>
+  </header>
+
+  <div class="hero">
+    <img class="folder" src="img/folder.png" alt="">
+    <span class="pill">Онлайн-практикум · старт 25 сентября</span>
+    <h1 class="h">Освой Claude Code с нуля и собери своего первого <em>нейросотрудника</em></h1>
+    <p class="lead">CLAUDE OS — практикум для тех, кто ни разу не работал с нейросетью как с сотрудником. За четыре недели вы поставите Claude к себе на компьютер, настроите рабочее пространство и передадите ассистенту свои повторяющиеся задачи.</p>
+    <div class="actions">
+      <a class="btn btn-main" href="#tariffs">Смотреть тарифы</a>
+      <a class="btn btn-ghost" href="#program">Программа</a>
+    </div>
+    <div class="facts">
+      <div class="card"><b>7 модулей</b><span>от регистрации до сотрудников</span></div>
+      <div class="card"><b>2 тарифа</b><span>6 900 и 9 900 ₽</span></div>
+      <div class="card"><b>4 недели</b><span>чат с ответами Дианы</span></div>
+      <div class="card"><b>25.09</b><span>открываются первые модули</span></div>
+    </div>
+  </div>
+
+  <section id="program">
+    <h2 class="h">Что будем делать <em>в каждом</em> модуле</h2>
+    <p class="sub">Каждый урок заканчивается результатом, который остаётся у вас: файлом, настройкой или готовым материалом.</p>
+    <div class="modules">
+
+      <div class="card module"><div class="num">0</div><div>
+        <h3>Вводный модуль</h3>
+        <ul>
+          <li>Выпишем пять задач, которые каждую неделю съедают ваше время</li>
+          <li>Разберём страхи «я же не программист» и «вдруг сломаю компьютер»</li>
+          <li>Посчитаем расходы на месяц вместе с подпиской, и вы выберете свою скорость прохождения</li>
+        </ul></div>
+        <div class="after">После модуля у вас на руках список своих задач и чек-лист готовности</div>
+      </div>
+
+      <div class="card module"><div class="num">1</div><div>
+        <h3>Регистрация и первые шаги в Claude</h3>
+        <ul>
+          <li>Зарегистрируемся и оплатим подписку из России, каждый шаг покажу на экране</li>
+          <li>Научимся писать запросы по формуле, выбирать модель под задачу и не сжигать лимиты подписки за час</li>
+          <li>Поймём разницу между чатом и Cowork, заведём первый проект и разберём в нём ваш реальный документ</li>
+        </ul></div>
+        <div class="after">После модуля у вас оплаченный аккаунт, свой проект и первая победа на рабочей задаче</div>
+      </div>
+
+      <div class="card module"><div class="num">2</div><div>
+        <h3>Настраиваем своё рабочее пространство</h3>
+        <ul>
+          <li>Переедем из браузера в программу VS Code: слева папки, справа Claude Code, а терминал понадобится только при установке</li>
+          <li>Соберём файл правил CLAUDE.md через интервью: Claude задаёт вопросы и сам пишет файл</li>
+          <li>Настроим память задач: через три месяца вернётесь к теме и увидите все шаги</li>
+          <li>Пропишем манеру и тон ваших текстов и стоп-лист фраз, по которым узнают нейросеть</li>
+        </ul></div>
+        <div class="after">После модуля Claude живёт у вас на компьютере и перед каждой задачей сам читает ваш файл правил</div>
+      </div>
+
+      <div class="card module"><div class="num">3</div><div>
+        <h3>Создаём вашу дизайн-систему</h3>
+        <ul>
+          <li>Сделаем для вашей аудитории гайд или чек-лист в PDF</li>
+          <li>Напишем текст карусели в вашей манере, сверстаем слайды и выгрузим их картинками</li>
+          <li>Правки будем вносить обычными словами до нужного вида</li>
+        </ul></div>
+        <div class="after">После модуля у вас готовые материалы и шаблон в едином стиле, по которому соберёте новые</div>
+      </div>
+
+      <div class="card module"><div class="num">4</div><div>
+        <h3>Создаём первый навык</h3>
+        <ul>
+          <li>Превратим в навык то, что собрали в модуле 3, и проверим его на второй задаче</li>
+          <li>Подключим Claude к вашему Notion или Google Диску и поставим готовый навык</li>
+        </ul></div>
+        <div class="after">После модуля то, что раньше делали руками, вы вызываете одной командой</div>
+      </div>
+
+      <div class="card module"><div class="num">5</div><div>
+        <h3>Нанимаем первых нейросотрудников</h3>
+        <ul>
+          <li>Напишем ассистенту инструкцию по вашим пяти задачам из вводного модуля и дадим ему базу знаний</li>
+          <li>Научимся принимать его работу и разберём, что делать, если он ошибся или ушёл не туда</li>
+          <li>Наймём второго сотрудника для постов и сценариев и свяжем их: один пишет, другой проверяет</li>
+        </ul></div>
+        <div class="after">После модуля у вас два работающих сотрудника и план недели вместе с ними</div>
+      </div>
+
+      <div class="card module"><div class="num">6</div><div>
+        <h3>Сайт, презентация и КП в Claude <span class="tag">PRO</span></h3>
+        <ul>
+          <li>Сделаем сайт-визитку или лендинг под вашу услугу и выложим в интернет</li>
+          <li>Соберём презентацию и шаблон коммерческого предложения: под нового клиента поменяете только содержание</li>
+          <li>Настроим расшифровку и превратим запись созвона в конспект, задачи и текст для клиента</li>
+        </ul></div>
+        <div class="after">После модуля у вас страница по ссылке, презентация, шаблон КП и настроенный разбор созвонов</div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="dates">
+    <h2 class="h">Как проходит <em>практикум</em></h2>
+    <p class="sub">Модули открываются в три даты, поэтому первую неделю вы спокойно ставите Claude и собираете рабочее пространство.</p>
+    <div class="dates">
+      <div class="card"><b>25 сентября</b><span>Модули 0, 1 и 2</span></div>
+      <div class="card"><b>2 октября</b><span>Модули 3, 4 и 5</span></div>
+      <div class="card"><b>9 октября</b><span>Модуль 6 для тарифа PRO</span></div>
+    </div>
+    <div class="how">
+      <div class="card"><h4>Урок</h4><p>Видео с показом на экране, конспект, задание с признаками готового результата и файлы: шаблоны, каркасы и примеры героини практикума.</p></div>
+      <div class="card"><h4>Чат с Дианой</h4><p>С 25 сентября по 23 октября. Отвечаю на вопросы по урокам по будням, обычно в течение суток.</p></div>
+      <div class="card"><h4>Доступ через Telegram</h4><p>Уроки открываются прямо в Telegram на телефоне и компьютере, вход по вашему аккаунту.</p></div>
+      <div class="card"><h4>Что понадобится</h4><p>Компьютер на macOS или Windows и платная подписка на Claude, которую оплачиваете вы. Как её оформить из России, показываю в модуле 1.</p></div>
+    </div>
+  </section>
+
+  <section id="tariffs">
+    <h2 class="h">Тарифы <em>первого</em> набора</h2>
+    <p class="sub">Оплата открывается 18 сентября. С 1 ноября практикум будет стоить дороже.</p>
+    <div class="tariffs">
+
+      <div class="card tariff">
+        <div class="t-name">CLAUDE OS</div>
+        <div class="price">6 900 <small>₽</small></div>
+        <div class="access">Доступ к урокам 6 месяцев</div>
+        <ul>
+          <li>Модули 0–5 с показом на экране</li>
+          <li>Конспекты, гайды с промтами, шаблоны и каркасы файлами</li>
+          <li>Заполненные примеры героини практикума</li>
+          <li>Тесты по итогам модулей</li>
+          <li>Чат с ответами Дианы с 25 сентября по 23 октября</li>
+          <li>Обновление уроков, когда Claude меняется</li>
+        </ul>
+        <a class="btn btn-ghost" href="https://t.me/mironova_dii">Узнать об открытии оплаты</a>
+      </div>
+
+      <div class="card tariff pro">
+        <div class="t-name">CLAUDE OS PRO</div>
+        <div class="price">9 900 <small>₽</small></div>
+        <div class="access">Доступ к урокам 12 месяцев</div>
+        <ul>
+          <li>Всё из тарифа CLAUDE OS</li>
+          <li class="plus">Модуль 6 «Сайт, презентация и КП»</li>
+          <li class="plus">Два живых созвона 6–8 и 16–23 октября: разбираю до 7 работ по заявкам и отвечаю на вопросы</li>
+          <li class="plus">База знаний: готовые навыки, роли сотрудников и инструкции</li>
+        </ul>
+        <a class="btn btn-main" href="https://t.me/mironova_dii">Узнать об открытии оплаты</a>
+        <div class="note">Продажи PRO закрываются 12 октября. Перейти с базового тарифа на PRO можно до этой даты за 3 000 ₽.</div>
+      </div>
+
+    </div>
+    <p class="after-tariffs">Шаблоны, каркасы и гайды, которые вы скачали, остаются у вас и после окончания доступа.</p>
+  </section>
+
+  <section id="guarantee">
+    <h2 class="h">Гарантии</h2>
+    <p class="sub">Полные условия возврата описаны в <a href="offer.html">оферте</a>.</p>
+    <div class="guar">
+      <div class="card"><h4>7 дней</h4><p>Если в течение семи дней после старта вы решите, что практикум вам не подходит, я верну деньги полностью, без объяснения причин. Для тех, кто купит после 25 сентября, семь дней считаются от оплаты.</p></div>
+      <div class="card"><h4>Гарантия входа</h4><p>Если до 23 октября вы не смогли оплатить подписку на Claude ни одним из способов из урока, я верну деньги за практикум целиком.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="req">
+      <b>Индивидуальный предприниматель Миронова Диана Александровна</b><br>
+      ИНН 310263491321 · ОГРНИП 321312300045329<br>
+      <a href="offer.html">Публичная оферта</a> · <a href="privacy.html">Политика конфиденциальности</a> · <a href="personal-data.html">Согласие на обработку персональных данных</a> · <a href="consent.html">Согласие на рассылки</a>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
