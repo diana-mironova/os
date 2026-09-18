@@ -124,7 +124,7 @@ a{color:var(--brown-deep)}
   padding:11px 22px;font-size:15px;color:var(--ink);white-space:nowrap}
 .hero .name b{font-weight:600}
 .folders{position:absolute;inset:-90px 0 0 0;z-index:0;pointer-events:none;overflow:hidden}
-.f1{left:49%;top:115px}.f2{left:79%;top:70px}.f3{left:57%;top:16px}.f4{left:92.5%;top:58%}.f5{left:33.5%;top:83%}.f6{left:89%;top:27%}
+.f1{left:49%;top:115px}.f2{left:79%;top:70px}.f3{left:57%;top:16px}.f4{left:92.5%;top:58%}.f5{left:40%;top:18px}.f6{left:89%;top:27%}
 @media(min-width:941px) and (max-width:1220px){
   .hero .photo img.d{width:120%;margin-left:-14%;margin-right:-6%}
   .hero .cl{left:-10%;top:42%}
@@ -136,8 +136,11 @@ a{color:var(--brown-deep)}
   transform:rotate(var(--r,-4deg));animation:float var(--t,11s) ease-in-out infinite;animation-delay:var(--d,0s)}
 @keyframes float{0%,100%{transform:rotate(var(--r,-4deg)) translateY(0)}50%{transform:rotate(var(--r,-4deg)) translateY(-14px)}}
 @media(prefers-reduced-motion:reduce){.fld{animation:none}}
-@media(max-width:940px){.fld{--w:78px!important}.f2,.f3,.f6{display:none}
-  .f5{display:none}.f1{left:3%;top:auto;bottom:34%}.f4{left:80%;top:auto;bottom:38%}}
+.m-folds{display:none}
+@media(max-width:940px){.fld{--w:74px!important}.folders{display:none}
+  .cta-wrap{display:flex;align-items:center;gap:12px}
+  .m-folds{display:flex;flex-direction:column;gap:12px;flex:0 0 auto;margin-left:auto;margin-right:auto}
+  .m-folds .fld{position:relative;opacity:.75}}
 .hero .name span{display:block;font-size:13px;color:var(--muted)}
 @media(max-width:940px){
   .hero{padding:84px 0 0}
@@ -604,9 +607,15 @@ footer a:hover{color:var(--brown-deep)}
         <span class="tag"><i></i>Онлайн-практикум · старт 25 сентября</span>
         <h1>Освойте <span class="ac">Claude&nbsp;Code с&nbsp;нуля</span> и&nbsp;соберите своих <em>первых нейросотрудников</em><span class="caret"></span></h1>
         <p class="lead">Настроите пространство, которое помнит ваши задачи и&nbsp;информацию о&nbsp;вас, и&nbsp;отдадите рутину сотрудникам, которых соберёте сами.</p>
-        <div class="cta-row">
-          <a class="btn btn-main" href="#tariffs">Выбрать тариф</a>
-          <a class="btn btn-ghost" href="#program">Смотреть программу</a>
+        <div class="cta-wrap">
+          <div class="cta-row">
+            <a class="btn btn-main" href="#tariffs">Выбрать тариф</a>
+            <a class="btn btn-ghost" href="#program">Смотреть программу</a>
+          </div>
+          <div class="m-folds" aria-hidden="true">
+            <span class="fld" style="--r:6deg;--t:11s">Claude Code</span>
+            <span class="fld" style="--r:-5deg;--t:13s;--d:.8s">Claude для бизнеса</span>
+          </div>
         </div>
         <p class="hint">Подойдёт тем, кто ни разу не&nbsp;открывал Claude</p>
       </div>
