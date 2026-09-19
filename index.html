@@ -583,6 +583,37 @@ footer a:hover{color:var(--brown-deep)}
   .btn{font-size:16px}
   .row input{font-size:16px}
 }
+/* ── бонус 72 часа ───────────────────────── */
+.bonus{position:relative;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(24px,3.4vw,60px);align-items:center;
+  background:var(--dark-1);color:var(--cream);border-radius:var(--r-slab);padding:clamp(26px,3vw,50px);margin-bottom:16px;overflow:hidden}
+.bonus::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background:repeating-linear-gradient(90deg,rgba(235,211,176,.05) 0 1.3px,transparent 1.3px 52px),repeating-linear-gradient(0deg,rgba(235,211,176,.05) 0 1.3px,transparent 1.3px 52px)}
+.bonus>*{position:relative}
+.bn-top{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.bn-gift{width:74px;height:74px;flex:none;transform:rotate(-9deg);filter:drop-shadow(0 8px 12px rgba(0,0,0,.35))}
+.bn-kick{white-space:nowrap;font-family:'BebasCyr',Impact,sans-serif;font-size:24px;letter-spacing:.06em;line-height:1;color:#E3865C;border:1.5px solid #5A452F;border-radius:999px;padding:9px 18px 7px}
+.bn-h{font-family:'PlayfairV',Georgia,serif;font-weight:540;text-transform:uppercase;font-size:clamp(28px,3.1vw,46px);line-height:1.04;color:#EBD3B0;margin:0 0 16px;max-width:17ch}
+.bn-h em{font-family:'PlayfairI',Georgia,serif;font-style:italic;text-transform:none;color:#D9B183}
+.bn-p{color:var(--cream-soft);font-size:16.5px;margin:0 0 16px;max-width:56ch}
+.bn-list{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.bn-list li{border:1px solid #4A3826;background:rgba(44,33,24,.8);border-radius:999px;padding:8px 15px;font-size:15px;color:#EBD9BE;line-height:1.3}
+.bn-r{text-align:center}
+.bn-reels{display:flex;justify-content:center;margin-bottom:22px}
+.bn-reels img{width:clamp(78px,7.4vw,112px);aspect-ratio:9/16;object-fit:cover;border-radius:12px;border:4px solid #F3E6D0;box-shadow:0 14px 24px rgba(0,0,0,.4)}
+.bn-reels img:nth-child(1){transform:rotate(-7deg) translateY(8px);margin-right:-14px}
+.bn-reels img:nth-child(2){transform:rotate(1deg);z-index:2;position:relative}
+.bn-reels img:nth-child(3){transform:rotate(7deg) translateY(8px);margin-left:-14px}
+.bn-lbl{font-family:'BebasCyr',Impact,sans-serif;font-size:19px;letter-spacing:.09em;color:var(--cream-soft);margin:0 0 10px}
+.bn-timer{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;max-width:440px;margin:0 auto}
+.bn-timer div{background:var(--dark-card);border:1px solid var(--line-dark);border-radius:16px;padding:14px 4px 10px}
+.bn-timer b{display:block;font-family:'PlayfairV',Georgia,serif;font-weight:540;font-size:clamp(32px,3.4vw,50px);line-height:1;color:#FFF3DF;font-variant-numeric:lining-nums tabular-nums}
+.bn-timer span{display:block;margin-top:6px;font-family:'BebasCyr',Impact,sans-serif;font-size:15px;letter-spacing:.1em;color:var(--hint)}
+.bn-note{margin:14px auto 0;color:var(--cream-soft);font-size:14.5px;max-width:36ch}
+@media(max-width:900px){.bonus{grid-template-columns:1fr}.bn-h{max-width:none}
+  .bn-list{display:grid;gap:7px}.bn-list li{border:0;background:none;border-radius:0;padding:0 0 0 20px;position:relative;font-size:15.5px}
+  .bn-list li::before{content:"";position:absolute;left:3px;top:.55em;width:7px;height:7px;border-radius:2px;background:#E3865C}}
+@media(max-width:560px){.bn-kick{font-size:18px;padding:8px 14px 6px}.bn-gift{width:60px;height:60px}.bn-list li{font-size:14px}.bn-timer{gap:7px}.bn-timer b{font-size:30px}.bn-timer span{font-size:13px}}
+
 </style>
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
@@ -1138,6 +1169,48 @@ footer a:hover{color:var(--brown-deep)}
     <div class="head">
       <h2 class="h">Тарифы</h2>
     </div>
+    <!-- 12а. бонус 72 часа · скрывается сам после 22.09 19:00 МСК -->
+    <div class="bonus" id="bonus" data-deadline="2026-09-22T19:00:00+03:00">
+      <div class="bn-l">
+        <div class="bn-top">
+          <svg class="bn-gift" viewBox="0 0 200 200" aria-hidden="true">
+            <path d="M100 66 C78 30 44 28 46 50 C48 68 80 70 100 66 Z" fill="#F3E3C8" stroke="#D9C09A" stroke-width="3"/>
+            <path d="M100 66 C122 30 156 28 154 50 C152 68 120 70 100 66 Z" fill="#F3E3C8" stroke="#D9C09A" stroke-width="3"/>
+            <rect x="34" y="96" width="132" height="92" rx="8" fill="#A8764C"/>
+            <rect x="24" y="66" width="152" height="36" rx="8" fill="#8A5C33"/>
+            <rect x="88" y="66" width="24" height="122" fill="#F3E3C8"/>
+            <rect x="34" y="102" width="132" height="7" fill="rgba(60,36,14,.18)"/>
+            <circle cx="100" cy="66" r="10" fill="#EAD5B2" stroke="#D9C09A" stroke-width="3"/>
+          </svg>
+          <span class="bn-kick">Подарок · только 72 часа</span>
+        </div>
+        <h3 class="bn-h">Бонусный урок: монтаж рилс через <em>Claude</em></h3>
+        <p class="bn-p">Все последние рилсы в&nbsp;моём аккаунте монтирует Claude, и&nbsp;это экономит мне 5–7 часов в&nbsp;неделю. В&nbsp;уроке вы повторите путь от&nbsp;сырого исходника до&nbsp;готового ролика:</p>
+        <ul class="bn-list">
+          <li>вырезаем паузы и&nbsp;дубли</li>
+          <li>ставим субтитры</li>
+          <li>хук с&nbsp;маской за&nbsp;спиной</li>
+          <li>анимированные вставки в&nbsp;фирменном стиле</li>
+          <li>sound design и&nbsp;переходы</li>
+          <li>шаблоны и&nbsp;инструкции, чтобы поставить монтажёра к&nbsp;себе на&nbsp;компьютер</li>
+        </ul>
+      </div>
+      <div class="bn-r">
+        <div class="bn-reels">
+          <img src="img/bonus-reel-1.jpg" alt="Рилс, смонтированный Claude">
+          <img src="img/bonus-reel-2.jpg" alt="Рилс, смонтированный Claude">
+          <img src="img/bonus-reel-3.jpg" alt="Рилс, смонтированный Claude">
+        </div>
+        <p class="bn-lbl">Подарок сгорит через</p>
+        <div class="bn-timer" aria-live="polite">
+          <div><b data-u="d">3</b><span>дня</span></div>
+          <div><b data-u="h">00</b><span>часов</span></div>
+          <div><b data-u="m">00</b><span>минут</span></div>
+          <div><b data-u="s">00</b><span>секунд</span></div>
+        </div>
+        <p class="bn-note">Урок получат все, кто оплатит любой тариф до&nbsp;22&nbsp;сентября, 19:00&nbsp;по&nbsp;Москве</p>
+      </div>
+    </div>
     <div class="plans">
       <div class="plan">
         <p class="nm">Claude<img class="fold-ic" src="img/folder.png" alt="">OS</p>
@@ -1285,6 +1358,27 @@ footer a:hover{color:var(--brown-deep)}
     t.classList.add('on');
     panes.forEach(function(p){p.classList.toggle('on',p.dataset.p===t.dataset.t)});
   })});
+})();
+</script>
+<script>
+/* бонус 72 часа: таймер и автоскрытие после дедлайна */
+(function(){
+  var el=document.getElementById('bonus'); if(!el) return;
+  var end=new Date(el.getAttribute('data-deadline')).getTime();
+  var u={}; el.querySelectorAll('[data-u]').forEach(function(n){u[n.getAttribute('data-u')]=n});
+  function word(n,a,b,c){var m=n%10,h=n%100;return (m==1&&h!=11)?a:(m>=2&&m<=4&&(h<10||h>=20))?b:c}
+  function tick(){
+    var left=end-Date.now();
+    if(left<=0){el.remove();return false}
+    var s=Math.floor(left/1000),d=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60),sec=s%60;
+    u.d.textContent=d; u.h.textContent=('0'+h).slice(-2); u.m.textContent=('0'+m).slice(-2); u.s.textContent=('0'+sec).slice(-2);
+    u.d.nextElementSibling.textContent=word(d,'день','дня','дней');
+    u.h.nextElementSibling.textContent=word(h,'час','часа','часов');
+    u.m.nextElementSibling.textContent=word(m,'минута','минуты','минут');
+    u.s.nextElementSibling.textContent=word(sec,'секунда','секунды','секунд');
+    return true;
+  }
+  if(tick()){var t=setInterval(function(){if(!tick())clearInterval(t)},1000)}
 })();
 </script>
 </body>
